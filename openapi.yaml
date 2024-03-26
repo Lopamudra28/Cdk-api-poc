@@ -1,0 +1,52 @@
+openapi: "3.0.3"
+info:
+  title: "Soccer Data API"
+  description: "A suite of endpoints to test initial endpoints"
+  version: "1"
+tags:
+  - name: hello world
+    description: Hello endpoints
+paths:
+  /api/test/getData:
+    get:
+      description: "An endpoint for getting all data"
+      tags:
+        - get data
+      parameters:
+        - name: id
+          in: query
+          description: "Filters by ID"
+          schema:
+            type: integer
+            description: "The ID"
+            example: 3
+          required: false
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetData"
+        400:
+          description: "Bad Request"
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "2.0"
+        uri: arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:440023311526:function:CdkDemoStack-hellolambdaDE420C60-dDGgvDUT4O2U/invocations 
+        # optimise uri how to write it
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        connectionType: "INTERNET"
+        type: "aws_proxy"
+        
+components:
+  schemas:
+    GetData :
+      type: object
+      description: "Response."
+      properties:
+        response:
+          type: string
+          description: "Welcome string."
+          example: "Data fetched succesfully"
+    
