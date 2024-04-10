@@ -1,6 +1,6 @@
 exports.handler = async(event, context) =>{
     
-    return sendResponse(200, "Fetch Succesfull")
+    return sendResponse(200, "Fetch Succesful")
 };
 
 const sendResponse = (status, body) => {
