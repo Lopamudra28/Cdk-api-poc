@@ -19,28 +19,6 @@ export class CdkDemoStack extends cdk.Stack {
       code: Code.fromAsset(join(__dirname,'../lambdas'))
     });
 
-    /*const deleteHandler = new Function(this, 'delete-lambda', {
-      runtime: Runtime.NODEJS_16_X,
-      memorySize: 512,
-      handler: 'delete.handler',
-      code: Code.fromAsset(join(__dirname,'../lambdas'))
-    });*/
-    
-
-
-    // using rest-api
-    /*const api = new apigateway.RestApi(this, 'hello-api',{
-      description: 'Basic API'
-
-    });
-
-    const books = api.root.addResource('books');
-    books.addMethod('GET', new LambdaIntegration(helloHandler));
-
-    const book = books.addResource('{book_id}');
-    book.addMethod('DELETE', new LambdaIntegration(deleteHandler));
-    */
-
     //using opiApi api-gateway
     const apiResourcePolicy = new cdk.aws_iam.PolicyDocument({
       statements: [
